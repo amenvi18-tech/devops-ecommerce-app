@@ -1,18 +1,18 @@
-# 1️⃣ Go to home directory (or where you want the project)
+# 1️ Go to home direct
 cd ~
 
-# 2️⃣ Create project folder
+# 2️ Create project folder
 mkdir -p devops-ecommerce-app/k8s/base
 cd devops-ecommerce-app
 
-# 3️⃣ Initialize git
+# 3️ Initialize git
 git init
 git branch -M main
 
-# 4️⃣ Add GitHub remote
+# 4️ Add GitHub remote
 git remote add origin https://github.com/amenvi18-tech/devops-ecommerce-app.git
 
-# 5️⃣ Create frontend.yaml
+# 5️ Create frontend.yaml
 cat > k8s/base/frontend.yaml <<EOL
 apiVersion: apps/v1
 kind: Deployment
@@ -54,7 +54,7 @@ spec:
     targetPort: 80
 EOL
 
-# 6️⃣ Create catalog.yaml
+#  Create catalog.yaml
 cat > k8s/base/catalog.yaml <<EOL
 apiVersion: apps/v1
 kind: Deployment
@@ -102,7 +102,7 @@ spec:
     targetPort: 5000
 EOL
 
-# 7️⃣ Create orders.yaml
+#  Create orders.yaml
 cat > k8s/base/orders.yaml <<EOL
 apiVersion: apps/v1
 kind: Deployment
