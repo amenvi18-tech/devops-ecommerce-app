@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: amenvi18-tech/devops-ecommerce-frontend:latest
+    container_name: frontend
+    ports:
+      - "8080:80"
+    environment:
+      API_CATALOG_URL: "http://catalog:5000"
+      API_ORDERS_URL: "http://orders:5001"
+    depends_on:
+      - catalog
+      - orders
+
+  catalog:
+    image: amenvi18-tech/devops-ecommerce-catalog:latest
+    container_name: catalog
+    ports:
+      - "5000:5000"
+    environment:
+      DB_HOST: catalog-db
+      DB_PORT: 3306
+      DB_USER: cataloguser
+      DB_PASSWORD: catalogpass123
+      DB_NAME: catalogdb
+    depends_on:
+      - catalog-db
+
+  catalog-db:
+    image: mysql:8.0
+    container_name: catalog-db
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword123
+      MYSQL_DATABASE: catalogdb
+      MYSQL_USER: cataloguser
+      MYSQL_PASSWORD: catalogpass123
+    volumes:
+      - catalog-db-data:/var/lib/mysql
+
+  orders:
+    image: amenvi18-tech/devops-ecommerce-orders:latest
+    container_name: orders
+    ports:
+      - "5001:5001"
+    environment:
+      DB_HOST: orders-db
+      DB_PORT: 3306
+      DB_USER: ordersuser
+      DB_PASSWORD: orderspass123
+      DB_NAME: ordersdb
+    depends_on:
+      - orders-db
+
+  orders-db:
+    image: mysql:8.0
+    container_name: orders-db
+    ports:
+      - "3308:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword123
+      MYSQL_DATABASE: ordersdb
+      MYSQL_USER: ordersuser
+      MYSQL_PASSWORD: orderspass123
+    volumes:
+      - orders-db-data:/var/lib/mysql
+
+volumes:
+  catalog-db-data:
+  orders-db-data:
+
+
+
+
+docker-compose up -d
+docker-compose down
