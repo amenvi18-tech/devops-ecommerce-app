@@ -1,158 +1,91 @@
-# 1️ Go to home direct
-cd ~
+# Hi, I'm Komlavi Gidi 
+**DevOps & Cloud Engineer | Infrastructure Automation | CI/CD Enthusiast**
 
-# 2️ Create project folder
-mkdir -p devops-ecommerce-app/k8s/base
-cd devops-ecommerce-app
+Passionate about **cloud infrastructure, automation, and system reliability**, I optimize deployments, manage secure environments, and streamline DevOps processes.
 
-# 3️ Initialize git
-git init
-git branch -M main
-
-# 4️ Add GitHub remote
-git remote add origin https://github.com/amenvi18-tech/devops-ecommerce-app.git
-
-# 5️ Create frontend.yaml
-cat > k8s/base/frontend.yaml <<EOL
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: frontend
-  labels:
-    app: frontend
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: frontend
-  template:
-    metadata:
-      labels:
-        app: frontend
-    spec:
-      containers:
-      - name: frontend
-        image: docker.io/amenvi18-tech/devops-ecommerce-frontend:latest
-        ports:
-        - containerPort: 80
-        env:
-        - name: API_CATALOG_URL
-          value: "http://catalog:5000"
-        - name: API_ORDERS_URL
-          value: "http://orders:5001"
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: frontend
-spec:
-  type: LoadBalancer
-  selector:
-    app: frontend
-  ports:
-  - port: 80
-    targetPort: 80
-EOL
 
-#  Create catalog.yaml
-cat > k8s/base/catalog.yaml <<EOL
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: catalog
-  labels:
-    app: catalog
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: catalog
-  template:
-    metadata:
-      labels:
-        app: catalog
-    spec:
-      containers:
-      - name: catalog
-        image: docker.io/amenvi18-tech/devops-ecommerce-catalog:latest
-        ports:
-        - containerPort: 5000
-        env:
-        - name: DB_HOST
-          value: catalog-db
-        - name: DB_PORT
-          value: "3306"
-        - name: DB_USER
-          value: cataloguser
-        - name: DB_PASSWORD
-          value: catalogpass123
-        - name: DB_NAME
-          value: catalogdb
+##  Highlighted Projects
+
+<div align="center">
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/amenvi18-tech">
+        <img src="https://raw.githubusercontent.com/amenvi18-tech/portfolio-placeholder/main/images/cicd-screenshot.png" width="250" alt="CI/CD Pipeline">
+      </a>
+      <br>
+      <sub><b>CI/CD Pipeline Automation</b> – Automated pipelines with GitLab CI, Docker, Kubernetes to improve deployment efficiency.</sub>
+    </td>
+    <td align="center">
+      <a href="https://github.com/amenvi18-tech">
+        <img src="https://raw.githubusercontent.com/amenvi18-tech/portfolio-placeholder/main/images/terraform-screenshot.png" width="250" alt="Terraform AWS">
+      </a>
+      <br>
+      <sub><b>Terraform AWS Deployment</b> – Provisioned and managed AWS infrastructure using Terraform and CloudFormation.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/amenvi18-tech">
+        <img src="https://raw.githubusercontent.com/amenvi18-tech/portfolio-placeholder/main/images/db-screenshot.png" width="250" alt="Database Automation">
+      </a>
+      <br>
+      <sub><b>Database Automation Scripts</b> – Python and Bash scripts to automate backups, user access, and monitoring.</sub>
+    </td>
+    <td align="center">
+      <a href="https://github.com/amenvi18-tech">
+        <img src="https://raw.githubusercontent.com/amenvi18-tech/portfolio-placeholder/main/images/monitoring-screenshot.png" width="250" alt="Monitoring">
+      </a>
+      <br>
+      <sub><b>Monitoring & Logging Setup</b> – Configured Prometheus, Grafana, and AWS CloudWatch dashboards to monitor system health.</sub>
+    </td>
+  </tr>
+</table>
+
+</div>
+
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: catalog
-spec:
-  type: ClusterIP
-  selector:
-    app: catalog
-  ports:
-  - port: 5000
-    targetPort: 5000
-EOL
 
-#  Create orders.yaml
-cat > k8s/base/orders.yaml <<EOL
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: orders
-  labels:
-    app: orders
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: orders
-  template:
-    metadata:
-      labels:
-        app: orders
-    spec:
-      containers:
-      - name: orders
-        image: docker.io/amenvi18-tech/devops-ecommerce-orders:latest
-        ports:
-        - containerPort: 5001
-        env:
-        - name: DB_HOST
-          value: orders-db
-        - name: DB_PORT
-          value: "3306"
-        - name: DB_USER
-          value: ordersuser
-        - name: DB_PASSWORD
-          value: orderspass123
-        - name: DB_NAME
-          value: ordersdb
+##  Skills & Tools
+
+![AWS](https://img.shields.io/badge/AWS-FF9900?logo=amazon-aws&logoColor=white) 
+![GCP](https://img.shields.io/badge/GCP-F44336?logo=google-cloud&logoColor=white) 
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white) 
+![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?logo=kubernetes&logoColor=white) 
+![Terraform](https://img.shields.io/badge/Terraform-623CE4?logo=terraform&logoColor=white) 
+![Ansible](https://img.shields.io/badge/Ansible-EE0000?logo=ansible&logoColor=white) 
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white) 
+![Bash](https://img.shields.io/badge/Bash-4EAA25?logo=gnu-bash&logoColor=white) 
+![GitLab](https://img.shields.io/badge/GitLab-FCA121?logo=gitlab&logoColor=white) 
+![Jenkins](https://img.shields.io/badge/Jenkins-D24939?logo=jenkins&logoColor=white) 
+
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: orders
-spec:
-  type: ClusterIP
-  selector:
-    app: orders
-  ports:
-  - port: 5001
-    targetPort: 5001
-EOL
 
-# 8️⃣ Stage and commit all files
-git add .
-git commit -m "Initial commit - DevOps microservices project scaffold"
+##  Certifications & Training
 
-# 9️⃣ Push to GitHub
-git push -u origin main
+![Google Cybersecurity](https://img.shields.io/badge/Google%20Cybersecurity-4285F4?logo=google&logoColor=white)  
+![MS-900](https://img.shields.io/badge/MS--900-Microsoft%20365-blue)  
+![MD-102](https://img.shields.io/badge/MD--102-Microsoft%20365-blue)  
+![CompTIA Network+](https://img.shields.io/badge/CompTIA%20Network%2B-0078D6?logo=comptia&logoColor=white)  
+
+---
+
+## GitHub Stats
+
+![Komlavi's GitHub stats](https://github-readme-stats.vercel.app/api?username=amenvi18-tech&show_icons=true&theme=radical)  
+
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=amenvi18-tech&layout=compact&theme=radical)  
+
+![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=amenvi18-tech&theme=radical)  
+
+---
+
+## Contact Me
+
+- **Email:** komlavigidi@gmail.com  
+- **LinkedIn:** komlavi gidi  
+- **GitHub:** [https://github.com/amenvi18-tech](https://github.com/amenvi18-tech)  
+
+> Looking for a team to join and collaborate on **DevOps, Cloud, and IT automation projects**!
