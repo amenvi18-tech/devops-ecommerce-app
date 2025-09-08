@@ -84,7 +84,7 @@ Passionate about **cloud infrastructure, automation, and system reliability**, I
 
 ## Contact Me
 
-- **Email:** komlavigidi@gmail.com  
+- **Email:** arogidi@gmail.com
 - **LinkedIn:** komlavi gidi  
 - **GitHub:** [https://github.com/amenvi18-tech](https://github.com/amenvi18-tech)  
 
